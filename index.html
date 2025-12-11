@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Insecurity in Arizona</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.7;
+            color: #333;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            min-height: 100vh;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2.5rem 2rem;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.95;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        nav {
+            background: #2d3748;
+            padding: 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        nav li {
+            flex: 1;
+            min-width: 150px;
+        }
+
+        nav button {
+            width: 100%;
+            padding: 1.2rem 1.5rem;
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+        }
+
+        nav button:hover {
+            background: rgba(255,255,255,0.1);
+            border-bottom: 3px solid #667eea;
+        }
+
+        nav button.active {
+            background: rgba(255,255,255,0.15);
+            border-bottom: 3px solid #667eea;
+        }
+
+        .content {
+            padding: 3rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h2 {
+            color: #667eea;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid #667eea;
+        }
+
+        h3 {
+            color: #764ba2;
+            font-size: 1.5rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+            text-align: justify;
+        }
+
+        .info-box {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .info-box h3 {
+            color: white;
+            margin-top: 0;
+        }
+
+        .info-box p {
+            margin-bottom: 1rem;
+        }
+
+        .info-box a {
+            color: white;
+            font-weight: bold;
+            text-decoration: underline;
+        }
+
+        .citation {
+            background: #f7fafc;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-left: 4px solid #667eea;
+            border-radius: 5px;
+        }
+
+        .reflection-question {
+            background: #edf2f7;
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 10px;
+            border-left: 5px solid #764ba2;
+        }
+
+        .reflection-question h3 {
+            color: #764ba2;
+            margin-top: 0;
+            font-size: 1.3rem;
+        }
+
+        footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+            }
+
+            nav li {
+                min-width: 100%;
+            }
+
+            .content {
+                padding: 2rem 1.5rem;
+            }
+
+            header h1 {
+                font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 1.6rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Food Insecurity in Arizona</h1>
+            <p>Understanding and Addressing Hunger Across Our Communities</p>
+        </header>
+
+        <nav>
+            <ul>
+                <li><button onclick="showTab('research')" id="btn-research" class="active">Research</button></li>
+                <li><button onclick="showTab('academic')" id="btn-academic">Academic Integration</button></li>
+                <li><button onclick="showTab('action')" id="btn-action">Taking Action</button></li>
+                <li><button onclick="showTab('reflection')" id="btn-reflection">Reflection</button></li>
+                <li><button onclick="showTab('letter')" id="btn-letter">Letter to Senator</button></li>
+                <li><button onclick="showTab('cited')" id="btn-cited">Works Cited</button></li>
+            </ul>
+        </nav>
+
+        <div class="content">
+            <!-- Research Tab -->
+            <div id="research" class="tab-content active">
+                <h2>Research Overview</h2>
+                
+                <div class="info-box">
+                    <h3>What Is Food Insecurity in Arizona?</h3>
+                    <p>Food insecurity means people do not always have reliable access to nutritious, affordable food. In Arizona, this affects families in cities, small towns, and tribal communities. Many households face rising food prices, long travel distances to grocery stores, or incomes that simply cannot keep up with basic needs. Children, working families, and rural and Native communities experience the highest rates of hunger across the state.</p>
+                </div>
+
+                <h3>Issues and Policy</h3>
+                <p>Food insecurity connects to several ongoing issues in Arizona. The end of pandemic support programs, high food costs, limited grocery access in rural regions, and underfunded infrastructure create major gaps in who can reach healthy food. Tribal communities face additional barriers linked to distance, lack of transportation, and exclusion from food policy decisions. State agencies recognize these challenges, but large parts of Arizona remain food deserts.</p>
+
+                <h3>Learn More About the Issues and Policies</h3>
+                <p>Food insecurity in Arizona comes from a mix of economic pressure, geography, and gaps in state and federal support. The sources you reviewed highlight several patterns that explain why so many families struggle to get consistent, healthy food.</p>
+
+                <h3>Rising Costs and the End of Pandemic Programs</h3>
+                <p>Data from the MAP Dashboard shows that food insecurity dropped between 2017 and 2021, but climbed again once temporary COVID programs expired. Prices rose faster than wages, and many families who relied on extra benefits suddenly had fewer resources. In 2022, more than 960,000 Arizonans struggled with food access, and children faced even higher rates.</p>
+
+                <h3>Working Families Still Can't Afford Food</h3>
+                <p>St. Mary's Food Bank reports that nearly two million residents face food insecurity, and almost 30 percent of them are working adults. These are people with steady jobs who still fall below the poverty line. They often skip meals, buy the cheapest available food, or go without proper nutrition because their income cannot keep up with rent, gas, and groceries.</p>
+
+                <h3>Rural and Tribal Communities Face Structural Barriers</h3>
+                <p>The Northern Arizona Food Equity Report and the Partnership with Native Americans show that food insecurity in rural and tribal regions is shaped by distance, limited stores, and weak infrastructure. Many communities lack grocery options, steady transportation, and local distribution networks. Before the pandemic, about 23 percent of Native households already struggled with food access. These barriers go far beyond income and are tied to long-standing gaps in roads, storage, and policy representation.</p>
+
+                <h3>Arizona Produces Food, But Access Isn't Equal</h3>
+                <p>The Arizona Department of Agriculture explains that the state's agriculture industry brings in more than $23 billion and supports over 138,000 jobs. Even with this level of production, one in six Arizonans still cannot reliably access healthy food. Geography plays a major role. Large areas of the state function as food deserts, especially in rural and tribal counties where transportation is limited and stores are spread far apart.</p>
+
+                <h3>Health Costs Are Rising</h3>
+                <p>CDC research shows that food insecurity adds heavy medical costs for both families and the state. Adults experiencing hunger face higher risks of chronic illnesses like diabetes and heart disease. Children experience anemia, asthma, developmental issues, and more frequent doctor visits. Arizona spends about $196 per person in healthcare costs tied to food insecurity, while affected households spend nearly $2,500 more each year.</p>
+
+                <h3>Why Policy Matters</h3>
+                <p>Policy choices shape how easily people can get healthy food in Arizona. When support programs fall behind or transportation networks stay weak, more families struggle to keep food on the table. Stronger policies that invest in access and include local communities make it easier for households to stay fed and stable.</p>
+            </div>
+
+            <!-- Academic Integration Tab -->
+            <div id="academic" class="tab-content">
+                <h2>Academic Integration</h2>
+                <p>Food insecurity in Arizona can fit in several sections of AP Gov because it's influenced by federalism, social welfare policies, and some policy drafting processes. It shows how the different levels of government share certain responsibilities like how Congress and other federal agencies shape anti-poverty programs and provide aid. It also connects to how public policy affects impoverished communities.</p>
+
+                <h3>Unit 1: Foundations of American Democracy - Federalism</h3>
+                <p>Federalism explains how food insecurity looks and has different statistics in different states because it's how much the states are doing to fix it. The national government runs major programs like SNAP, WIC, and school lunch funding, but the states themselves decide how strictly these programs are administered and who qualifies for these benefits. Arizona's high food insecurity rates reflect the shared authority of the state government and the federal government. When the pandemic era federal programs expired, the states were given the choice to keep continuing them or discontinue them. The spike in food insecurity rates in AZ shows how important state support matters just as much as federal spending on these programs. This insecurity is also shown in rural and tribal regions in which infrastructure is far more limited in these remote areas. Federalism shows why these problems exist today for AZ because state support is just as important as federal aid.</p>
+
+                <h3>Unit 2: Interactions Among Branches (Congress and the Federal Bureaucracy)</h3>
+                <p>Congress writes the laws that create social welfare programs and federal agencies carry these programs out. SNAP funding, child nutrition, and agricultural subsidies are all examples of what policies the congress has put out. These policies are managed by the Department of Agriculture and the Department of Health and Human Services. Congressional budgeting and how congress chooses to allocate money into different programs have direct impacts on families. For example, when federal benefits expanded during the pandemic, food insecurity rates in AZ dropped substantially. In contrast, when congress allowed this aid to expire, the insecurity rates climbed back up again, and this is a direct example of how legislative policy creation and federal agencies impact food insecurity rates in AZ.</p>
+
+                <h3>Unit 5 and 6 - Social Welfare Policy</h3>
+                <p>Food insecurity is a product of social welfare policy. The issue can be combined with poverty, expensive healthcare, homelessness, and the marginalization of aid that communities receive. The CDC study shows how hunger increases medical costs due to the lack of nutrients leading to increased risk of infection for people. Food banks and community aid programs fall short of helping those in need because many tribal communities still face high food insecurity because federal programs don't always allocate enough for those in remote geographical locations. Understanding how social welfare policy chooses which area to target is important in trying to understand the problem of food insecurity because it shows us how aid is allocated between the different areas of need. It also shows us how immense coordination is needed between these federal agencies, nonprofits, and local governments to try and solve the problem.</p>
+            </div>
+
+            <!-- Taking Action Tab -->
+            <div id="action" class="tab-content">
+                <h2>Taking Action</h2>
+                <p>Food insecurity touches families in every part of Arizona, so taking action means focusing on practical steps that make it easier for people to reach healthy food. The reports you reviewed show patterns across the state. Prices are high, many households lose access to support when programs end, and rural and tribal communities deal with long distances and weak infrastructure. These problems won't disappear on their own, but there are straightforward ways communities can respond.</p>
+
+                <img src="volunteers-sorting-food-at-food-bank.jpg" alt="Volunteers sorting food at a food bank" style="width: 100%; max-width: 800px; height: auto; border-radius: 10px; margin: 2rem 0; box-shadow: 0 5px 20px rgba(0,0,0,0.15);">
+
+                <h3>Support Stronger Food Assistance Programs</h3>
+                <p>SNAP and WIC provide important help, especially for families with children. When pandemic programs ended, food insecurity rose again. Expanding outreach for these programs in rural and tribal areas can help more households stay stable. Clear information, easier enrollment, and steady support can reduce some of the pressure caused by high food prices.</p>
+
+                <h3>Strengthen Local Food Distribution</h3>
+                <p>Food banks play a major role in Arizona. St. Mary's Food Bank alone distributes over 100 million pounds of food each year. Supporting these efforts through donations, volunteer work, or local partnerships can help families who are struggling to keep up with costs. Mobile food distribution can also help communities far from grocery stores, especially in northern and tribal regions where distance creates real barriers.</p>
+
+                <h3>Invest in Rural and Tribal Infrastructure</h3>
+                <p>Rural counties and tribal nations often lack consistent transportation, grocery stores, and cold storage. The Northern Arizona Food Equity Report points out that many families travel long distances just to buy basic groceries. Improving roads, supporting local food hubs, and helping smaller communities build storage and distribution sites can make food more reachable. These changes take time, but they have a direct impact on daily life.</p>
+
+                <h3>Work With Local Farmers and Producers</h3>
+                <p>Arizona has a strong agriculture sector, yet many low-income areas still face food deserts. Better connections between local growers and nearby communities can help close that gap. This can include farmers markets, school partnerships, or small-scale delivery programs that bring fresh food to places where it is hard to find.</p>
+
+                <h3>Support Tribal Food Sovereignty Efforts</h3>
+                <p>Native communities face some of the highest food insecurity rates in the state. Tribal organizations and local groups are already working to strengthen their own food systems. Supporting these efforts means listening to community needs, backing local farming and gardening projects, and improving representation in state food policy. This helps families rely less on distant stores and limited supply routes.</p>
+
+                <h3>Promote Nutrition Education in Schools and Clinics</h3>
+                <p>Children in food-insecure homes face higher risks of anemia, asthma, and learning challenges. Simple programs in schools and clinics can help families make the most of the food they have and understand where to find local support. This kind of education works best when paired with stronger access to actual food.</p>
+            </div>
+
+            <!-- Reflection Tab -->
+            <div id="reflection" class="tab-content">
+                <h2>Reflection</h2>
+
+                <div class="reflection-question">
+                    <h3>1. What still needs to be done to further your goals?</h3>
+                    <p>We still need to expand access to consistent and affordable food in rural, tribal, and low income areas. Many families live far from grocery stores and rely on food banks that run low. Strengthening programs like SNAP and WIC would help more people keep stable food supplies. Arizona also needs better transportation systems and storage infrastructure so food can reach remote communities. Without these steps, hunger rates will keep rising when prices go up or benefits go away.</p>
+                </div>
+
+                <div class="reflection-question">
+                    <h3>2. What are some pressing needs in the community and how does this project address them?</h3>
+                    <p>One of the biggest needs is getting healthy food to people who live far from grocery stores. Tribal and rural communities often have long travel distances and limited transportation, which makes consistent meals hard to maintain. Another need is reducing the health problems linked to hunger since food insecure families face higher rates of diabetes, heart issues, and childhood illnesses. This project helps by explaining why access is uneven and by showing how policy choices, costs, and infrastructure gaps shape these problems. Understanding the causes makes it easier to push for change that matches what these communities actually face.</p>
+                </div>
+
+                <div class="reflection-question">
+                    <h3>3. What would you like to learn more about related to this issue?</h3>
+                    <p>I want to learn more about how local food systems work in tribal and rural regions. Reports show that many communities lack storage facilities, distribution networks, and transportation, and I want to understand how those gaps form over time. I am also interested in how tribes are building food sovereignty programs and how those efforts can reduce dependence on distant suppliers. Learning more about the daily challenges families face in these areas would help shape better solutions. It would also help identify which policies create the biggest barriers.</p>
+                </div>
+
+                <div class="reflection-question">
+                    <h3>4. What follow up is needed to address challenges or difficulties?</h3>
+                    <p>The next step is to keep tracking which areas still struggle with consistent food access. Some regions improve for a short period and then fall back when programs end or prices rise. Food banks need stable funding so they can keep up with demand instead of reacting to crises. Communities also need surveys and feedback systems to show where store access is weak or where transportation routes need improvement. Following up with tribal and rural leaders would help keep the information accurate and useful.</p>
+                </div>
+
+                <div class="reflection-question">
+                    <h3>5. What information can you share with your peers or the community?</h3>
+                    <p>I can share that food insecurity in Arizona is not only about income. Geography plays a major role because many families are far from grocery stores and healthy options. Tribal communities face even more challenges linked to infrastructure and lack of representation in food policy decisions. I can also explain that hunger brings real health costs for families and the state, which makes prevention important. Sharing this information can help others understand why this issue affects so many people and why long term solutions matter.</p>
+                </div>
+            </div>
+
+            <!-- Letter to Senator Tab -->
+            <div id="letter" class="tab-content">
+                <h2>Letter to Senator</h2>
+                
+                <div style="background: #f7fafc; padding: 2.5rem; border-radius: 10px; border-left: 5px solid #667eea; line-height: 1.8;">
+                    <p>Dear Senator Gallego,</p>
+
+                    <p>My name is Shrivatsa Ventrapragada, and I am a student at Mountain Ridge High School in the class of 2026. I researched about food insecurity in Arizona as part of my AP Government service learning project, and the more I learned, the more apparent it became that this issue requires more attention at the federal level. Many families across the state struggle with rising prices, benefit gaps, and inadequate access to grocery stores, particularly in rural and tribal areas. Therefore, I am writing to request your support and acknowledgement of food access programs that can benefit cities in greatest need.</p>
+
+                    <p>Recent statistics demonstrate the extent of this problem, with Arizona indicating that over 960,000 residents experienced food insecurity in 2022, with children requiring more support than adults. St. Mary's Food Bank reveals that upwards of two million people are food insecure and live in food deserts, many of whom work full time and are still unable to afford healthy foods. The CDC's research outlines increased healthcare costs associated with food insecurity and poor eating habits, as well as increased chronic disease prevalence in these regions. In rural regions, including northern Arizona and tribal communities, the problem is worse; the long distances, lack of public transportation, and inadequate infrastructure make it difficult for residents to access fresh food.</p>
+
+                    <p>There are solutions that can help. Expanding SNAP and WIC enrollment assistance can help families, particularly with grocery store costs trending upwards. Federal funding for transportation, such as mobile markets, can help serve rural and tribal areas lacking grocery stores for immediate needs. Expanding community food hubs can also provide more options in areas where there are none. Donations and partnerships from farmers, local government can stabilize supply and reduce waste, keeping fresh food within reach. This will decrease not only food insecurity but also healthcare costs associated with food insecurity.</p>
+
+                    <p>Please consider supporting legislation that strengthens food access programs for communities with the most food insecurity.</p>
+
+                    <p>Thank you for your time, and I appreciate your consideration. P.S. I was there at Nourish Phoenix when you volunteered there, and I am glad that a person as high of a rank as yourself is volunteering. Thank you!</p>
+
+                    <p style="margin-top: 2rem;">Sincerely,<br>
+                    Shrivatsa Ventrapragada</p>
+                </div>
+            </div>
+
+            <!-- Works Cited Tab -->
+            <div id="cited" class="tab-content">
+                <h2>Works Cited</h2>
+                
+                <div class="citation">
+                    <p>2024 Northern Arizona Food Equity Report. (2025). Retrieved October 27, 2025, from https://hotfood.org/wp-content/uploads/2025/01/2024-Northern-Arizona-Food-Equity-Report-1.pdf</p>
+                </div>
+
+                <div class="citation">
+                    <p>Berkowitz, S. A., Basu, S., Gundersen, C., & Seligman, H. K. (2019). State-level and county-level estimates of health care costs associated with food insecurity. <em>Preventing Chronic Disease, 16</em>, 180549. https://doi.org/10.5888/pcd16.180549</p>
+                </div>
+
+                <div class="citation">
+                    <p>Del Campo-Carmona, B. (2025). Tracking food insecurity. <em>Food Security Is High in Arizona and Tucson MSA | MAP Dashboard</em>. Retrieved October 26, 2025, from https://mapazdashboard.arizona.edu/article/concern-about-tackling-food-insecurity-tucson-arizona-msa</p>
+                </div>
+
+                <div class="citation">
+                    <p>Food access. (n.d.). <em>Arizona Department of Agriculture</em>. Retrieved October 27, 2025, from https://agriculture.az.gov/about-us/food-access</p>
+                </div>
+
+                <div class="citation">
+                    <p>Food insecurity & the hunger crisis in AZ: St. Marys Food Bank. (2024, November 26). <em>St. Mary's Food Bank</em>. https://www.stmarysfoodbank.org/about-us/food-insecurity/</p>
+                </div>
+
+                <div class="citation">
+                    <p>Partnership With Native Americans. (2021, June 8). Partnership with Native Americans co-chairs 'tribal food sovereignty' series with Local First Arizona and Arizona Food Systems Network. <em>PR Newswire</em>. https://www.prnewswire.com/news-releases/partnership-with-native-americans-co-chairs-tribal-food-sovereignty-series-with-local-first-arizona-and-arizona-food-systems-network-301307724.html</p>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>&copy; 2025 Food Insecurity in Arizona Project | Understanding and Addressing Community Needs</p>
+            <p style="margin-top: 0.5rem;">Shrivatsa Ventrapragada<br>
+            Service Learning Project<br>
+            AP Government and Politics<br>
+            Mrs. Chisholm</p>
+        </footer>
+    </div>
+
+    <script>
+        function showTab(tabName) {
+            const tabs = document.querySelectorAll('.tab-content');
+            const buttons = document.querySelectorAll('nav button');
+            
+            tabs.forEach(tab => tab.classList.remove('active'));
+            buttons.forEach(btn => btn.classList.remove('active'));
+            
+            document.getElementById(tabName).classList.add('active');
+            document.getElementById('btn-' + tabName).classList.add('active');
+            
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
